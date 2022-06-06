@@ -2,14 +2,14 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Trader.Domain.Models;
+using Trader.Domain.Models.AutoComplete;
 using Trader.Domain.Services;
 // RD7WIYDUWJN9IXFK
 namespace Trader.FinancialModelingPrepAPI.Services
 {
-    public class MajorIndexService<T> : IMajorIndexService<MajorIndexes> where T : class
+    public class AutoCompleteService<T> : IAutoCompleteService<AutoComplete> where T : class
     {
-        public async Task<MajorIndexes> GetMajorIndex(string indexType) //MajorIndexType
+        public async Task<AutoComplete> GetAutoCompleteResults(string indexType) //MajorIndexType
         {
 
             try
@@ -36,7 +36,7 @@ namespace Trader.FinancialModelingPrepAPI.Services
                 {
                     response.EnsureSuccessStatusCode();
                     var body = await response.Content.ReadAsStringAsync();
-                    MajorIndexes? majorIndexes = JsonConvert.DeserializeObject(body, typeof(MajorIndexes)) as MajorIndexes;
+                    AutoComplete? majorIndexes = JsonConvert.DeserializeObject(body, typeof(AutoComplete)) as AutoComplete;
                     return majorIndexes;
                 }
             }
