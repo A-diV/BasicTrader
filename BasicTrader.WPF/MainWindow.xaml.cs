@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using Trader.Domain.Models.AutoComplete;
-using Trader.FinancialModelingPrepAPI.Services;
 using Trader.WPF.ViewModels;
 
 
@@ -15,10 +13,10 @@ namespace Trader.WPF
         {
             this.DataContext = new MainViewModel();
 
-            new AutoCompleteService<AutoComplete>().GetAutoCompleteResults("tesla").ContinueWith((task) =>
-            {
-                var index = task.Result;
-            });
+            //new AutoCompleteService<AutoComplete>().GetAutoCompleteResults("tesla").ContinueWith((task) =>
+            //{
+            //    var index = task.Result;
+            //});
 
 
             InitializeComponent();

@@ -36,8 +36,9 @@ namespace Trader.FinancialModelingPrepAPI.Services
                 {
                     response.EnsureSuccessStatusCode();
                     var body = await response.Content.ReadAsStringAsync();
-                    AutoComplete? majorIndexes = JsonConvert.DeserializeObject(body, typeof(AutoComplete)) as AutoComplete;
-                    return majorIndexes;
+                    AutoComplete? autoComplete = JsonConvert.DeserializeObject(body, typeof(AutoComplete)) as AutoComplete;
+
+                    return autoComplete;
                 }
             }
             catch (Exception)
