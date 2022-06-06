@@ -1,1 +1,1 @@
-# Trader
+# Basic Trader - Experimenting
