@@ -18,7 +18,6 @@ namespace Trader.WPF
             //    var index = task.Result;
             //});
 
-
             InitializeComponent();
         }
     }
