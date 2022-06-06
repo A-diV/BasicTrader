@@ -1,16 +1,16 @@
 ﻿using BasicTrader.Domain.Models.Enum;
+using BasicTrader.Domain.Models.RealtimePrice;
+using BasicTrader.Domain.Services;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Trader.Domain.Models.AutoComplete;
-using Trader.Domain.Services;
-// RD7WIYDUWJN9IXFK
-namespace Trader.FinancialModelingPrepAPI.Services
+
+namespace BasicTrader.FinancialModelingPrepAPI.Services
 {
-    public class AutoCompleteService<T> : IAutoCompleteService<AutoComplete> where T : class
+    public class RealtimePriceService<T> : IRealtimeData<RealtimeData> where T : class
     {
-        public async Task<AutoComplete> GetAutoCompleteResults(IndexType indexType) //MajorIndexType
+        public async Task<RealtimeData> GetRealTimePrices(IndexType indexType)
         {
             try
             {
@@ -18,7 +18,7 @@ namespace Trader.FinancialModelingPrepAPI.Services
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
-                    RequestUri = new Uri($"https://yfapi.net/v6/finance/autocomplete?region=US&lang=en&query={indexType}"),
+                    RequestUri = new Uri($"https://alpha.financeapi.net/market/get-realtime-prices?symbols={indexType}"),
                     Headers =
                         {
                             { "accept", "application/json" },
@@ -30,9 +30,9 @@ namespace Trader.FinancialModelingPrepAPI.Services
                 {
                     response.EnsureSuccessStatusCode();
                     var body = await response.Content.ReadAsStringAsync();
-                    AutoComplete? autoComplete = JsonConvert.DeserializeObject(body, typeof(AutoComplete)) as AutoComplete;
+                    RealtimeData? realtimeData = JsonConvert.DeserializeObject(body, typeof(RealtimeData)) as RealtimeData;
 
-                    return autoComplete;
+                    return realtimeData;
                 }
             }
             catch (Exception)
@@ -43,3 +43,4 @@ namespace Trader.FinancialModelingPrepAPI.Services
         }
     }
 }
+

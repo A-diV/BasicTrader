@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using BasicTrader.Domain.Models.Enum;
+using System.Threading.Tasks;
 
 namespace Trader.Domain.Services
 {
     public interface IAutoCompleteService<T> where T : class
     {
-        Task<T> GetAutoCompleteResults(string indexType);
+        Task<T> GetAutoCompleteResults(IndexType indexType);
     }
 }
