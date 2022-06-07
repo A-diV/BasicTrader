@@ -5,10 +5,12 @@
              xmlns:viewModels="clr-namespace:Trader.WPF.ViewModels"
              xmlns:views="clr-namespace:Trader.WPF.Views"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/Common.xaml"/>
+                <ResourceDictionary Source="/Styles/NavigationBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type views:HomeView}">
@@ -20,4 +22,5 @@
             
         </ResourceDictionary>
     </Application.Resources>
+    
 </Application>
