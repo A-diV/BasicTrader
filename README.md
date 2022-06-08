@@ -1,1 +1,2 @@
-# Basic Trader - Experimenting
+# Basic Trader 
+Experimenting with API
