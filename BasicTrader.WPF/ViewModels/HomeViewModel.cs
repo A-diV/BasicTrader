@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BasicTrader.WPF.ViewModels;
 
 namespace Trader.WPF.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
+        public IndexViewModel IndexViewModel { get; set; }
+        public HomeViewModel(IndexViewModel indexViewModel)
+        {
+            IndexViewModel = indexViewModel;
+        }
     }
 }

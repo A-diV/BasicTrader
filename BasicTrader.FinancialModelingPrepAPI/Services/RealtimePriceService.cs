@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BasicTrader.FinancialModelingPrepAPI.Services
 {
-    public class RealtimePriceService<T> : IRealtimeData<RealtimeData> where T : class
+    public class RealtimePriceService<T> : IRealtimeData//<RealtimeData> where T : class
     {
         public async Task<RealtimeData> GetRealTimePrices(IndexType indexType)
         {
@@ -22,7 +22,7 @@ namespace BasicTrader.FinancialModelingPrepAPI.Services
                     Headers =
                         {
                             { "accept", "application/json" },
-                            { "X-API-KEY", "QXkz8kiyco2sQEATd98so5g0q1Fqdge13721D4Bx"},
+                            { "X-API-KEY", "sVJ2vqPbCsa2jjPuCGJu12vqneWNsZMm3BGX4V6s"}, //  QXkz8kiyco2sQEATd98so5g0q1Fqdge13721D4Bx
                         },
                 };
 

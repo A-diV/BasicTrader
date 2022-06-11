@@ -1,6 +1,4 @@
-﻿using BasicTrader.Domain.Models.RealtimePrice;
-using BasicTrader.FinancialModelingPrepAPI.Services;
-using System.Windows;
+﻿using System.Windows;
 using Trader.WPF.ViewModels;
 
 
@@ -20,10 +18,10 @@ namespace Trader.WPF
             //    var index = task.Result;
             //});
 
-            new RealtimePriceService<RealtimeData>().GetRealTimePrices(BasicTrader.Domain.Models.Enum.IndexType.TSLA).ContinueWith(task =>
-            {
-                var realTimePrices = task.Result;
-            });
+            //new RealtimePriceService<RealtimeData>().GetRealTimePrices(BasicTrader.Domain.Models.Enum.IndexType.TSLA).ContinueWith(task =>
+            //{
+            //    var realTimePrices = task.Result;
+            //});
 
             InitializeComponent();
         }
