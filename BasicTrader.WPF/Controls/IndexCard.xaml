@@ -4,37 +4,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BasicTrader.WPF.Controls" 
-             
-             xmlns:viewmodels="clr-namespace:BasicTrader.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:IndexViewModel}"
-             
+             xmlns:converter="clr-namespace:BasicTrader.WPF.Controls.Converters"
+         
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Border BorderBrush="LightGray"  BorderThickness="1" CornerRadius="10" Background="AliceBlue">
+
+    <Border BorderBrush="LightGray"  BorderThickness="1" CornerRadius="10" Background="#dcfff1" Margin="20 0 0 0">
+        <Border.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource BrushPrimary2}"/>
+            </Style>
+        </Border.Resources>
+        
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" FontSize="24" Text="Binding AAPL" FontWeight="Bold"/>
+            <TextBlock Grid.Row="0" FontSize="24" Text="{Binding Id}" FontWeight="Bold"/>
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions> 
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
+                
+                <Grid.Resources>
+                    <converter:PositiveConverter x:Key="PositiveConverter"/>
+                    
+                    <Style TargetType="TextBlock" x:Key="NumericTextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Self}, Converter={StaticResource PositiveConverter}}" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource BrushPrimary2}"/>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Self}, Converter={StaticResource PositiveConverter}}" Value="False">
+                                <Setter Property="Foreground" Value="{StaticResource BrushDanger}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
 
 
                 <TextBlock Grid.Row="0" Grid.Column="0" FontSize="18" Text="Price" FontWeight="Bold" Margin="0 0 30 0"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" FontSize="18" Text="Binding Last, StringFormat={}{0:c}}"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" FontSize="18" Text="{Binding Attributes.Last, StringFormat={}{0:c}}"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="18" Text="Changes" FontWeight="Bold" Margin="0 0 30 0"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" FontSize="18" Text="{Binding Change, StringFormat={}{0:c}}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="18" Text="Change" FontWeight="Bold" Margin="0 0 30 0"/>
+                <TextBlock x:Name="Change" Grid.Row="1" Grid.Column="1" FontSize="18" Text="{Binding Attributes.Change, StringFormat={}{0:c}}" Style="{StaticResource NumericTextBlock}" />
             </Grid>
         </Grid>
     </Border>

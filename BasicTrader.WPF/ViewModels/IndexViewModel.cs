@@ -1,5 +1,7 @@
 ﻿using BasicTrader.Domain.Models.Enum;
+using BasicTrader.Domain.Models.RealtimePrice;
 using BasicTrader.Domain.Services;
+using BasicTrader.WPF.Controls;
 using Trader.WPF.ViewModels;
 
 namespace BasicTrader.WPF.ViewModels
@@ -8,8 +10,8 @@ namespace BasicTrader.WPF.ViewModels
     {
         private readonly IRealtimeData _realtimeData;
 
-        private IndexType _msft;
-        public IndexType MSFT
+        private DataItem _msft;
+        public DataItem? MSFT
         {
             get
             {
@@ -22,19 +24,19 @@ namespace BasicTrader.WPF.ViewModels
             }
         }
 
-        private IndexType _aapl;
-        public IndexType AAPL
-        {
-            get
-            {
-                return _aapl;
-            }
-            set
-            {
-                _aapl = value;
-                OnPropertyChanged(nameof(AAPL));
-            }
-        }
+        //private IndexType _aapl;
+        //public IndexType AAPL
+        //{
+        //    get
+        //    {
+        //        return _aapl;
+        //    }
+        //    set
+        //    {
+        //        _aapl = value;
+        //        OnPropertyChanged(nameof(AAPL));
+        //    }
+        //}
 
         public IndexViewModel(IRealtimeData realtimeData)
         {
@@ -47,27 +49,26 @@ namespace BasicTrader.WPF.ViewModels
             indexViewModel.LoadIndexes();
             return indexViewModel;
         }
-
+         
         private void LoadIndexes()
         {
             _realtimeData.GetRealTimePrices(IndexType.MSFT).ContinueWith(task =>
             {
                 if (task.Exception == null)
                 {
-                    var t = task.Result;
-                    MSFT = IndexType.MSFT;
+                    MSFT = task.Result.Data[0];
                 }
             });
 
-            _realtimeData.GetRealTimePrices(IndexType.AAPL).ContinueWith(task =>
-            {
-                if (task.Exception == null)
-                {
-                    var t = task.Result;
-                    AAPL = IndexType.AAPL;
+            //_realtimeData.GetRealTimePrices(IndexType.AAPL).ContinueWith(task =>
+            //{
+            //    if (task.Exception == null)
+            //    {
+            //        var t = task.Result;
+            //        AAPL = IndexType.AAPL;
 
-                }
-            }); ;
+            //    }
+            //}); 
         }
     }
 }

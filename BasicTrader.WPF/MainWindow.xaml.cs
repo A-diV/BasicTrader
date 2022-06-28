@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using BasicTrader.Domain.Models.RealtimePrice;
+using BasicTrader.FinancialModelingPrepAPI.Services;
+using System.Windows;
 using Trader.WPF.ViewModels;
 
 

@@ -22,7 +22,7 @@ namespace BasicTrader.FinancialModelingPrepAPI.Services
                     Headers =
                         {
                             { "accept", "application/json" },
-                            { "X-API-KEY", "sVJ2vqPbCsa2jjPuCGJu12vqneWNsZMm3BGX4V6s"}, //  QXkz8kiyco2sQEATd98so5g0q1Fqdge13721D4Bx
+                            { "X-API-KEY", "MV216AkbmE7vmtsO3MF0g9dNvqoQ5vEq6y1Uornh"}, //  QXkz8kiyco2sQEATd98so5g0q1Fqdge13721D4Bx
                         },
                 };
 
@@ -35,9 +35,8 @@ namespace BasicTrader.FinancialModelingPrepAPI.Services
                     return realtimeData;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 throw;
             }
         }
