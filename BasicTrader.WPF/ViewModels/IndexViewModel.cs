@@ -24,19 +24,47 @@ namespace BasicTrader.WPF.ViewModels
             }
         }
 
-        //private IndexType _aapl;
-        //public IndexType AAPL
-        //{
-        //    get
-        //    {
-        //        return _aapl;
-        //    }
-        //    set
-        //    {
-        //        _aapl = value;
-        //        OnPropertyChanged(nameof(AAPL));
-        //    }
-        //}
+        private DataItem _aapl;
+        public DataItem AAPL
+        {
+            get
+            {
+                return _aapl;
+            }
+            set
+            {
+                _aapl = value;
+                OnPropertyChanged(nameof(AAPL));
+            }
+        }
+
+        private DataItem _amzn;
+        public DataItem? AMZN
+        {
+            get
+            {
+                return _amzn;
+            }
+            set
+            {
+                _amzn = value;
+                OnPropertyChanged(nameof(AMZN));
+            }
+        }
+
+        private DataItem _ups;
+        public DataItem? UPS
+        {
+            get
+            {
+                return _ups;
+            }
+            set
+            {
+                _ups = value;
+                OnPropertyChanged(nameof(UPS));
+            }
+        }
 
         public IndexViewModel(IRealtimeData realtimeData)
         {
@@ -60,15 +88,29 @@ namespace BasicTrader.WPF.ViewModels
                 }
             });
 
-            //_realtimeData.GetRealTimePrices(IndexType.AAPL).ContinueWith(task =>
-            //{
-            //    if (task.Exception == null)
-            //    {
-            //        var t = task.Result;
-            //        AAPL = IndexType.AAPL;
-
-            //    }
-            //}); 
+            _realtimeData.GetRealTimePrices(IndexType.AAPL).ContinueWith(task =>
+            {
+                if (task.Exception == null)
+                {
+                    AAPL = task.Result.Data[0];
+                }
+            });
+            
+            _realtimeData.GetRealTimePrices(IndexType.AMZN).ContinueWith(task =>
+            {
+                if (task.Exception == null)
+                {
+                    AMZN = task.Result.Data[0];
+                }
+            });
+            
+            _realtimeData.GetRealTimePrices(IndexType.UPS).ContinueWith(task =>
+            {
+                if (task.Exception == null)
+                {
+                    UPS = task.Result.Data[0];
+                }
+            });
         }
     }
 }

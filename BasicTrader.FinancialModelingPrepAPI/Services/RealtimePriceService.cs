@@ -37,7 +37,7 @@ namespace BasicTrader.FinancialModelingPrepAPI.Services
             }
             catch (Exception ex)
             {
-                throw;
+               throw;
             }
         }
     }
