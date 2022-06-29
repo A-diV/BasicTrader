@@ -6,7 +6,7 @@ using Trader.WPF.ViewModels;
 
 namespace BasicTrader.WPF.ViewModels
 {
-    public class IndexViewModel : ViewModelBase
+    public class IndexListingViewModel : ViewModelBase
     {
         private readonly IRealtimeData _realtimeData;
 
@@ -66,14 +66,14 @@ namespace BasicTrader.WPF.ViewModels
             }
         }
 
-        public IndexViewModel(IRealtimeData realtimeData)
+        public IndexListingViewModel(IRealtimeData realtimeData)
         {
             _realtimeData = realtimeData;
         }
 
-        public static IndexViewModel LoadIndexViewModel(IRealtimeData realtimeData)
+        public static IndexListingViewModel LoadIndexViewModel(IRealtimeData realtimeData)
         {
-            IndexViewModel indexViewModel = new IndexViewModel(realtimeData);
+            IndexListingViewModel indexViewModel = new IndexListingViewModel(realtimeData);
             indexViewModel.LoadIndexes();
             return indexViewModel;
         }

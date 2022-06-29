@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace BasicTrader.WPF.Controls.Converters
+namespace BasicTrader.WPF.Converters
 {
     public class PositiveConverter : IValueConverter
     {

@@ -4,10 +4,10 @@ namespace Trader.WPF.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        public IndexViewModel IndexViewModel { get; set; }
-        public HomeViewModel(IndexViewModel indexViewModel)
+        public IndexListingViewModel IndexListingViewModel { get; set; }
+        public HomeViewModel(IndexListingViewModel indexViewModel)
         {
-            IndexViewModel = indexViewModel;
+            IndexListingViewModel = indexViewModel;
         }
     }
 }
